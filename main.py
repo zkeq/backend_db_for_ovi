@@ -45,11 +45,7 @@ def post_temp_ak(name: str = None, ak: str = None):
 @app.get("/")
 def root():
   db_list = db.keys()
-  keys = []
-  for i in db_list:
-    keys.append(db[i])
-  return {"Hello": db_list,
-         "keys": keys}
+  return {"Hello": db_list}
 
 
 if __name__ == "__main__":
