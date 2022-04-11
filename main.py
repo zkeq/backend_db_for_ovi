@@ -12,6 +12,7 @@ except:
 
 app = FastAPI(docs_url=None, redoc_url=None)
 
+
 db["time"] = int(time.time())
 
 # 帮我写一个入口函数
@@ -21,10 +22,11 @@ def get_use_key():
   split_time = int(time.time()) - time_now
   print(f"当前延迟{split_time}")
   if split_time < 4500:
-    _value = db["access_token"]
+    _value = db.get("access_token")
     print("成功获取到缓存数据！")
   else:
     _value = None
+    del db["access_token"]
     db["time"] = int(time.time())
     print("缓存超时！重新获取！")
   return _value
